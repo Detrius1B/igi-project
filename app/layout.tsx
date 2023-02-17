@@ -1,33 +1,29 @@
 'use client';
 
-import { Box } from '@mui/material';
-import { SessionProvider } from 'next-auth/react';
+import { theme } from '../theme';
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+
+import { getCookie, setCookie, deleteCookie } from 'cookies-next';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 interface IRootLayout {
   children: React.ReactNode;
 }
 
+const ACCESS_TOKEN = 'accessToken1';
+
 export default function RootLayout({ children }: IRootLayout) {
-  // const userRole = 'manager';
-  // const isManager = userRole === "manager";
-  // const NAV_LINKS = isManager ? MANAGER_LINKS : EMPLOYEE_LINKS;
-
-  const AppComponent = <></>;
-
   return (
     <html lang='en'>
       <head />
-      <body
-        style={{
-          margin: 0,
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: '#008eff6b'
-        }}
-      >
-        <SessionProvider>
-          <Box width={1} height={1} sx={{ a: { textDecoration: 'none' } }}>{children}</Box>
-        </SessionProvider>
+      <body>
+        <Box width={'100vw'} height={'100vh'}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </Box>
       </body>
     </html>
   );

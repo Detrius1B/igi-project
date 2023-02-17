@@ -2,11 +2,8 @@
 
 import LoginForm from '@/components/LoginForm';
 import { Box, TextField, Typography } from '@mui/material';
-import { useSession } from 'next-auth/react';
 
 const LoginPage = () => {
-  const session = useSession();
-  console.log(session);
 
   return (
     <Box

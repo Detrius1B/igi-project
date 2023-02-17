@@ -1,17 +1,27 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-type Data = {
-  name: string;
-};
+type Data =
+  | {
+      name: string;
+      role: string;
+    }
+  | { text: string };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  console.log('reqqqq', req.body);
-  console.log('ressss', res);
+  if (
+    req.body?.username?.toLowerCase() === 'manager' &&
+    req.body.password?.toLowerCase() === '123123'
+  ) {
+    return res.status(200).redirect('').json({ name: req.body?.username, role: 'manager' });
+  }
 
-  // change to accessToken
+  if (
+    req.body?.username?.toLowerCase() === 'employee' &&
+    req.body.password?.toLowerCase() === '123123'
+  ) {
+    return res.status(200).json({ name: req.body?.username, role: 'employee' });
+  }
 
-  // res.status(401).json({ text: 'not allowed' });
-
-  return res.status(200).json({ name: req.body?.username });
+  return res.status(401).json({ text: 'not correct' });
 }

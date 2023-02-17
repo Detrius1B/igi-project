@@ -1,20 +1,28 @@
 import { Box, Button, Card, TextField } from '@mui/material';
-import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+// import { signIn } from 'next-auth/react';
 import { useRef } from 'react';
 
 const LoginForm = () => {
   // for better form control use library (react-hook-form || formik)
   const username = useRef('');
   const password = useRef('');
+  const router = useRouter();
 
   const onSubmit = async () => {
-    const result = await signIn('credentials', {
-      username: username.current,
-      password: password.current,
-      redirect: true,
-      callbackUrl: '/dashboard'
-    });
-    console.log(result);
+    if (username.current === 'manager') {
+      return router.replace('/dashboard/manager/employee-list');
+    }
+    if (username.current === 'employee') {
+      return router.replace('/dashboard/employee/create-task');
+    }
+    // const result = await signIn('credentials', {
+    //   username: username.current,
+    //   password: password.current,
+    //   redirect: true,
+    //   callbackUrl: '/dashboard'
+    // });
+    // console.log(result);
   };
 
   return (
