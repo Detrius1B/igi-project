@@ -13,12 +13,12 @@ export const MANAGER_LIST = [
   {
     icon: <FormatListBulletedIcon color='secondary' />,
     label: 'Workers List',
-    link: '/manager/workers-list'
+    link: '/manager/workers/list'
   },
   {
     icon: <QueueIcon color='secondary' />,
     label: 'Temp Page',
-    link: '/manager/first-page-m'
+    link: '/manager/'
   }
 ];
 
@@ -36,7 +36,7 @@ export const WORKER_LIST = [
   {
     icon: <QueueIcon color='secondary' />,
     label: 'Temp Page',
-    link: '/worker/first-page-w'
+    link: '/worker/'
   }
 ];
 
@@ -48,4 +48,4 @@ export const NAVBAR_LIST = {
 export const ACCOUNT_LINK = {
   manager: '/manager',
   worker: '/worker'
-}
+};

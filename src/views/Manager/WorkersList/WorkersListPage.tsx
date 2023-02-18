@@ -57,7 +57,7 @@ const WorkerItem = ({ worker = {} }) => {
       width={1}
       p={2}
       component={Link}
-      href={`/manager/worker/${worker?.id}`}
+      href={`/manager/workers/${worker?.id}`}
       sx={{
         ':hover': {
           bgcolor: blueGrey[300]

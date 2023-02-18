@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { blueGrey } from '@mui/material/colors';
 
 export default function ManagerLayout({ children }: { children: React.ReactNode }) {
-  const userRole = 'manager';
+  const userRole = 'worker'; // TODO: get role
 
   return (
     <Box display='flex' width={1} height={1}>
