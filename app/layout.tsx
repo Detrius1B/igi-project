@@ -6,6 +6,7 @@ import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import { getCookie, setCookie, deleteCookie } from 'cookies-next';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import AuthProvider from '@/context/AuthProvider/AuthProvider';
 
 interface IRootLayout {
   children: React.ReactNode;
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: IRootLayout) {
         <Box width={'100vw'} height={'100vh'}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {children}
+            <AuthProvider>{children}</AuthProvider>
           </ThemeProvider>
         </Box>
       </body>

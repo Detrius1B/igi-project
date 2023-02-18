@@ -1,9 +1,21 @@
 'use client';
 
 import LoginForm from '@/components/LoginForm';
+import { useAuth } from '@/context/AuthProvider/AuthProvider';
+import { useGetLocalUser } from '@/hooks/useGetUser';
 import { Box, TextField, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const LoginPage = () => {
+  const router = useRouter();
+  const { user, isLoading } = useAuth();
+
+  useEffect(() => {
+    if (!isLoading && user) {
+      router.replace('/dashboard');
+    }
+  }, [router, user, isLoading]);
 
   return (
     <Box

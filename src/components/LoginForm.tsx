@@ -1,29 +1,31 @@
+'use client';
+
+import { useAuth } from '@/context/AuthProvider/AuthProvider';
+import { getUser } from '@/hooks/useGetUser';
 import { Box, Button, Card, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
 // import { signIn } from 'next-auth/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const LoginForm = () => {
   // for better form control use library (react-hook-form || formik)
-  const username = useRef('');
-  const password = useRef('');
+  const usernameRef = useRef('');
+  const passwordRef = useRef('');
   const router = useRouter();
 
+  const { user, signin } = useAuth();
+
   const onSubmit = async () => {
-    if (username.current === 'manager') {
-      return router.replace('/dashboard/manager/employee-list');
-    }
-    if (username.current === 'employee') {
-      return router.replace('/dashboard/employee/create-task');
-    }
-    // const result = await signIn('credentials', {
-    //   username: username.current,
-    //   password: password.current,
-    //   redirect: true,
-    //   callbackUrl: '/dashboard'
-    // });
-    // console.log(result);
+    // if (username.current === 'manager') {
+    //   return router.replace('/dashboard/manager/employee-list');
+    // }
+    // if (username.current === 'employee') {
+    //   return router.replace('/dashboard/employee/create-task');
+    // }
+    signin({ username: usernameRef.current, password: passwordRef.current });
   };
+
+  console.log({ user });
 
   return (
     <Card variant='elevation' elevation={4} sx={{ p: 10, borderRadius: 5 }}>
@@ -31,12 +33,13 @@ const LoginForm = () => {
         <TextField
           // value='lol'
           label='username'
-          onChange={(e) => (username.current = e.target.value)}
+          onChange={(e) => (usernameRef.current = e.target.value)}
         />
         <TextField
           // value='lol'
           label='password'
-          onChange={(e) => (password.current = e.target.value)}
+          onChange={(e) => (passwordRef.current = e.target.value)}
+          type='password'
         />
         <Button onClick={onSubmit} variant='contained' color='primary' size='large'>
           sign in
