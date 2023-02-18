@@ -1,6 +1,7 @@
 'use client';
 
 import { getUser } from '@/hooks/useGetUser';
+import { useRouter } from 'next/navigation';
 import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
 
 type AuthProviderProps = {
@@ -33,6 +34,7 @@ export const AuthContext = createContext({} as UseAuth);
 export const useAuth = (): UseAuth => useContext(AuthContext);
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserDataState | null>(null);
 
@@ -65,6 +67,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(null);
     window.localStorage.removeItem('user');
     setIsLoading(false);
+    router.replace('/login');
   };
 
   return (

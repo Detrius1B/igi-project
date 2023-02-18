@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Box, Typography } from '@mui/material';
 import { blueGrey } from '@mui/material/colors';
 
-const AccountPage = ({ list = [] }) => {
+const WorkersList = ({ list = [] }: any) => {
   return (
     <Box display='flex' flexDirection='column' width={1} height={1} gap={4}>
       <Typography variant='h4' sx={{ span: { fontWeight: 600 } }}>
@@ -27,12 +27,12 @@ const AccountPage = ({ list = [] }) => {
   );
 };
 
-export default AccountPage;
+export default WorkersList;
 
 const ListHeader = () => {
   return (
     <Box display='flex' width={1} px={2} py={1}>
-      <Box display='flex' width={1 / 10}>
+      <Box display='flex' width={1 / 8}>
         ID
       </Box>
       <Box display='flex' width={1}>
@@ -64,7 +64,7 @@ const WorkerItem = ({ worker = {} }) => {
         }
       }}
     >
-      <Box display='flex' width={1 / 10}>
+      <Box display='flex' width={1 / 8}>
         {worker?.id}
       </Box>
       <Box display='flex' width={1}>

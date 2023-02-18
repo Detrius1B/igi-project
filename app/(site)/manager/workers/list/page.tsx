@@ -1,17 +1,19 @@
 import WorkersListPage from 'views/Manager/WorkersList/WorkersListPage';
+import users from '../../../../../data/users.json';
 
-const getWorkersList = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+// const getWorkersList = async () => {
+//   const res = await fetch('https://jsonplaceholder.typicode.com/users');
 
-  if (!res.ok) return [];
+//   if (!res.ok) return [];
 
-  const data = await res?.json();
+//   const data = await res?.json();
 
-  return data;
-};
+//   return data;
+// };
 
-const AccountPage = async () => {
-  const workersList = await getWorkersList();
+const WorkersList = async () => {
+  // const workersList = await getWorkersList();
+  const workersList = users?.filter((user) => user.role === 'worker') || [];
 
   return (
     <>
@@ -20,4 +22,4 @@ const AccountPage = async () => {
   );
 };
 
-export default AccountPage;
+export default WorkersList;

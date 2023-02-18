@@ -1,6 +1,14 @@
 import users from '../../data/users.json';
 
-export function getUser(userName = '') {
+type UserDataState = {
+  email: string;
+  password: string;
+  name: string;
+  role: 'worker' | 'manager' | string;
+  id: string;
+} | null;
+
+export function getUser(userName = ''): UserDataState {
   const userdata = users?.find((user) => user.name === userName);
 
   // console.log(window.localStorage.length);

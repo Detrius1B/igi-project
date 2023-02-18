@@ -5,9 +5,7 @@ import { blueGrey, green } from '@mui/material/colors';
 
 import CheckIcon from '@mui/icons-material/Check';
 
-const WORKED_DAYS = ['14', '15', '16', '18', '19'];
-
-const WorkersDataPage = ({ data = {} }) => {
+const WorkersDataPage = ({ data = {}, shedule = [] }) => {
   return (
     <Box display='flex' flexDirection='column' width={1} height={1} gap={4}>
       <Typography variant='h4' sx={{ span: { fontWeight: 600 } }}>
@@ -20,17 +18,14 @@ const WorkersDataPage = ({ data = {} }) => {
         borderRadius={2}
         border={`1px solid ${blueGrey[400]}`}
       >
+        <WorkerData label='ID' value={data?.id} />
         <WorkerData label='name' value={data?.name} />
-        <WorkerData label='username' value={data?.username} />
         <WorkerData label='email' value={data?.email} />
         <WorkerData label='phone' value={data?.phone} />
-        <WorkerData label='street' value={data?.address?.street} />
-        <WorkerData label='city' value={data?.address?.city} />
-        <WorkerData label='zipcode' value={data?.address?.zipcode} />
       </Box>
 
       <Box display='flex' flexDirection='column' borderRadius={2}>
-        <Calendar data={WORKED_DAYS} />
+        <Calendar shedules={shedule} />
       </Box>
     </Box>
   );
@@ -48,7 +43,9 @@ const WorkerData = ({ label = '', value = '' }) => {
   );
 };
 
-const Calendar = ({ data = [] }) => {
+// const week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+const Calendar = ({ shedules = [] }) => {
   let curr = new Date();
   let week = [];
 
@@ -79,14 +76,15 @@ const Calendar = ({ data = [] }) => {
           </Box>
         ))}
       </Box>
-      <Box display='flex' flexDirection='row'>
-        {week?.map((day, n) => (
+      <Box display='flex' flexDirection='column' width={1} gap={1}>
+        {shedules?.map((shedule, weekIndex) => (
           <Box
-            key={`calendar-day-${n}`}
+            key={`calendar-week-${weekIndex}`}
             bgcolor={blueGrey[200]}
             border={`1px solid ${blueGrey[600]}`}
+            borderRadius={2}
             minHeight={100}
-            width={1 / 7}
+            width={1}
             p={1}
             display='flex'
             flexDirection='column'
@@ -94,22 +92,42 @@ const Calendar = ({ data = [] }) => {
             justifyContent='center'
             position='relative'
           >
-            <Typography position='absolute' top={10} right={10} fontWeight={600}>
-              {day?.daynum}
+            <Typography top={10} right={10} fontWeight={600}>
+              Week: {shedule?.week}
             </Typography>
-            {data.find((workDay) => workDay === day.daynum) ? (
-              <Box
-                display='flex'
-                alignItems='center'
-                justifyContent='center'
-                borderRadius='50%'
-                bgcolor={green[300]}
-                width={60}
-                height={60}
-              >
-                <CheckIcon />
-              </Box>
-            ) : null}
+
+            <Box display='flex' flexDirection='row' width={1}>
+              {shedule?.workDays?.map((day, dayIndex) => (
+                <Box
+                  key={`calendar-day-${dayIndex}`}
+                  bgcolor={blueGrey[300]}
+                  border={`1px solid ${blueGrey[600]}`}
+                  borderRadius={1}
+                  minHeight={100}
+                  width={1 / 7}
+                  p={1}
+                  display='flex'
+                  flexDirection='column'
+                  alignItems='center'
+                  justifyContent='center'
+                  position='relative'
+                >
+                  {day === 1 ? (
+                    <Box
+                      display='flex'
+                      alignItems='center'
+                      justifyContent='center'
+                      borderRadius='50%'
+                      bgcolor={green[300]}
+                      width={60}
+                      height={60}
+                    >
+                      <CheckIcon />
+                    </Box>
+                  ) : null}
+                </Box>
+              ))}
+            </Box>
           </Box>
         ))}
       </Box>

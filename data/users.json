@@ -4,13 +4,31 @@
     "password": "123",
     "name": "Ana",
     "role": "manager",
+    "phone": "061-23-49-87",
     "id": "1"
   },
   {
-    "email": "worker@e.com",
+    "email": "workerBogdan@e.com",
     "password": "123",
     "name": "Bogdan",
     "role": "worker",
+    "phone": "061-23-49-37",
     "id": "2"
+  },
+  {
+    "email": "workerDumitru@e.com",
+    "password": "123",
+    "name": "Dumitru",
+    "role": "worker",
+    "phone": "061-23-49-77",
+    "id": "3"
+  },
+  {
+    "email": "workerAlex@e.com",
+    "password": "123",
+    "name": "Alex",
+    "role": "worker",
+    "phone": "061-23-49-99",
+    "id": "4"
   }
 ]

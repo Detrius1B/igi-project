@@ -1,7 +1,6 @@
 'use client';
 
 import { useAuth } from '@/context/AuthProvider/AuthProvider';
-import { getUser } from '@/hooks/useGetUser';
 import { Box, Button, Card, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
 // import { signIn } from 'next-auth/react';

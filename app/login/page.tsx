@@ -2,7 +2,6 @@
 
 import LoginForm from '@/components/LoginForm';
 import { useAuth } from '@/context/AuthProvider/AuthProvider';
-import { useGetLocalUser } from '@/hooks/useGetUser';
 import { Box, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';

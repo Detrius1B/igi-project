@@ -1,14 +1,14 @@
 'use client';
 
-import { useGetUser } from '@/hooks/useGetUser';
+import { useAuth } from '@/context/AuthProvider/AuthProvider';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 const AccountPage = () => {
   const router = useRouter();
-  const user = useGetUser('Bogdan');
+  const { user, isLoading } = useAuth();
 
-  if (!user) router.replace('/login');
+  if (!isLoading && !user) router.replace('/login');
 
   return (
     <Box display='flex' flexDirection='column' width={1} height={1}>

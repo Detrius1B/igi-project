@@ -2,31 +2,37 @@
   {
     "userId": 2,
     "year": "2023",
-    "week": "8",
-    "workDays": [0,1,1,1,1,0,1]
-  },
-  {
-    "userId": 2,
-    "year": "2023",
     "week": "9",
-    "workDays": [0,1,1,1,1,0,1]
+    "workDays": [1, 1, 1, 1, 1, 0, 0]
   },
   {
     "userId": 2,
     "year": "2023",
     "week": "10",
-    "workDays": [0,1,1,1,1,0,1]
+    "workDays": [0, 1, 1, 1, 1, 1, 0]
   },
   {
-    "userId": 2,
+    "userId": 3,
     "year": "2023",
-    "week": "11",
-    "workDays": [0,1,1,1,1,0,1]
+    "week": "9",
+    "workDays": [1, 0, 1, 1, 1, 0, 1]
   },
   {
-    "userId": 2,
+    "userId": 4,
     "year": "2023",
-    "week": "12",
-    "workDays": [0,1,1,1,1,0,1]
+    "week": "9",
+    "workDays": [0, 1, 1, 1, 1, 0, 1]
+  },
+  {
+    "userId": 3,
+    "year": "2023",
+    "week": "10",
+    "workDays": [0, 1, 1, 1, 1, 0, 1]
+  },
+  {
+    "userId": 4,
+    "year": "2023",
+    "week": "10",
+    "workDays": [0, 1, 1, 1, 1, 0, 1]
   }
 ]

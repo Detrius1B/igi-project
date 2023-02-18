@@ -1,5 +1,6 @@
 import { ACCOUNT_LINK, NAVBAR_LIST } from '@/constants/navbar';
-import { Box, Divider, Drawer, Typography } from '@mui/material';
+import { useAuth } from '@/context/AuthProvider/AuthProvider';
+import { Box, Divider, Drawer, Typography, Button } from '@mui/material';
 import { blueGrey } from '@mui/material/colors';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -7,10 +8,6 @@ import { usePathname } from 'next/navigation';
 const drawerWidth = 240;
 
 const NavBar = ({ role }: { role: 'manager' | 'worker' }) => {
-  const router = usePathname();
-
-  if (!role) return null;
-
   return (
     <Drawer
       sx={{
@@ -25,12 +22,27 @@ const NavBar = ({ role }: { role: 'manager' | 'worker' }) => {
       variant='permanent'
       anchor='left'
     >
-      <Box fontSize={24} p={1} textAlign='center' component={Link} href={ACCOUNT_LINK?.[role]}>
+      <Box fontSize={24} p={1} textAlign='center' component={Link} href={'/dashboard'}>
         🐼🐼🐼
       </Box>
       <Divider />
+      <NavList />
+    </Drawer>
+  );
+};
+
+export default NavBar;
+
+const NavList = () => {
+  const router = usePathname();
+  const { user, isLoading, signout } = useAuth();
+
+  if (!isLoading && !user) return null;
+
+  return (
+    <>
       <Box display='flex' flexDirection='column'>
-        {NAVBAR_LIST?.[role]?.map((item, i) => (
+        {NAVBAR_LIST?.[user?.role]?.map((item, i) => (
           <Box
             key={i}
             component={Link}
@@ -52,8 +64,10 @@ const NavBar = ({ role }: { role: 'manager' | 'worker' }) => {
           </Box>
         ))}
       </Box>
-    </Drawer>
+      <Box flex={1}></Box>
+      <Button color='secondary' variant='contained' sx={{ mb: 1 }} onClick={signout}>
+        LogOut
+      </Button>
+    </>
   );
 };
-
-export default NavBar;

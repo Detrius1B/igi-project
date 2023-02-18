@@ -16,6 +16,11 @@ export const MANAGER_LIST = [
     link: '/manager/workers/list'
   },
   {
+    icon: <FormatListBulletedIcon color='secondary' />,
+    label: 'Shedules',
+    link: '/manager/shedules'
+  },
+  {
     icon: <QueueIcon color='secondary' />,
     label: 'Temp Page',
     link: '/manager/'
